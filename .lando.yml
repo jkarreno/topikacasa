@@ -1,0 +1,21 @@
+name: topikacasa
+
+recipe: lamp
+
+config:
+
+  php: '8.1'
+
+  webroot: .
+
+  database: mysql:8.0
+
+services:
+
+  database:
+    portforward: 3306
+
+proxy:
+
+  appserver:
+    - topikacasa.lndo.site
