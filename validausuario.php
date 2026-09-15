@@ -6,7 +6,10 @@ include('conexion.php');
 //include ('funciones.php');
 
 //Sentencia SQL para buscar un usuario con esos datos 
-$ssql = "SELECT * FROM usuarios WHERE Usuario='".$_POST["user"]."' and Contrasenna='".md5($_POST["pass"])."'"; 
+$ssql = "SELECT u.Usuario,  u.Contrasenna, u.Perfil, u.Nombre, u.Id, p.Permisos
+            FROM usuarios AS u
+            INNER JOIN perfiles AS p ON u.Perfil = p.Id
+            WHERE u.Usuario='".$_POST["user"]."' AND u.Contrasenna='".md5($_POST["pass"])."'"; 
 
 //Ejecuto la sentencia 
 $rs = mysqli_query($conn, $ssql); 
@@ -21,10 +24,11 @@ if (mysqli_num_rows($rs)!=0){
     
     //session_register("autentificado"); 
     $_SESSION["autentificado"] = "SI"; 
-    //$_SESSION["perfil"] = $Rowrs["Perfil"];
+    $_SESSION["perfil"] = $Rowrs["Perfil"];
     $_SESSION["nombre"] = $Rowrs["Nombre"];
     $_SESSION["Id"] = $Rowrs["Id"];
     $_SESSION["usuario"] = $Rowrs["Usuario"];
+    $_SESSION["permisos"] = $Rowrs["Permisos"];
  //    sesion_register("usuario");
 //    $usuario = $username;
 

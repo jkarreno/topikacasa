@@ -12,9 +12,7 @@
 
 		<link rel="icon" href="images/dashboard.png" type="image/png">
 	</head>
-	<body style="background: url('images/<?php echo rand(1,10);?>.png') no-repeat; background-size: cover; background-position: top center;">
-		<video autoplay="" muted="" loop="" playsinline="" controlslist="nodownload" src="https://gptecnologia.com.mx/helpdesk/video/Design - 48420.mp4" type="video/mp4" id="video_background" preload="auto" volume="50">
-		</video>
+	<body style="background: url('images/fondo.jpg') no-repeat; background-size: cover; background-position: top center;">
 		<div class="centrado_logo">
 			<h2>&nbsp;</h2>
 			<img src="images/logotrans.png" border="0"  style="margin-top:35px">
@@ -37,9 +35,6 @@
 					<div class="hf" style="margin-top: calc(var(--spacing)* 13);">
 						<input type="submit" name="botingresar" id="botingresar" value="Ingresar" class="boton">
 					</div>
-				</div>
-				<div style="display: flex; justify-content: center; align-items: center;">
-					<img src="images/fundacion-best-logo.png" border="0" width="200" style="margin-top: calc(var(--spacing)* 13);">
 				</div>
 			</form>
 		</div>

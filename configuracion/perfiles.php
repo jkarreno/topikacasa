@@ -6,6 +6,44 @@ include("../funciones.php");
 
 $mensaje='';
 
+if(isset($_POST["hacer"]))
+{
+    //agregar perfil
+    if($_POST["hacer"]=='addperfil')
+    {
+        $permisos='|';
+        $ResPermisos = mysqli_query($conn, "SELECT Id FROM permisos ORDER BY Id ASC");
+        while($RResP=mysqli_fetch_array($ResPermisos))
+        {
+            if(isset($_POST["per_".$RResP["Id"]]) && $_POST["per_".$RResP["Id"]]==1)
+            {
+                $permisos.=$RResP["Id"].'|';
+            }
+            
+        }
+        mysqli_query($conn, "INSERT INTO perfiles (Nombre, Permisos) VALUES('".$_POST["nombre"]."', '".$permisos."')");
+
+        $mensaje='<div class="mesaje" id="mesaje"><i class="fas fa-thumbs-up"></i> Se agrego el perfil '.$_POST["nombre"].'</div>';
+    }
+    //editar perfil
+    if($_POST["hacer"]=='editperfil')
+    {
+        $permisos='|';
+        $ResPermisos = mysqli_query($conn, "SELECT Id FROM permisos ORDER BY Id ASC");
+        while($RResP=mysqli_fetch_array($ResPermisos))
+        {
+            if(isset($_POST["per_".$RResP["Id"]]) && $_POST["per_".$RResP["Id"]]==1)
+            {
+                $permisos.=$RResP["Id"].'|';
+            }
+            
+        }
+        mysqli_query($conn, "UPDATE perfiles SET Nombre = '".$_POST["nombre"]."', Permisos = '".$permisos."' WHERE Id = '".$_POST["idperfil"]."'");
+        $mensaje='<div class="mesaje" id="mesaje"><i class="fas fa-thumbs-up"></i> Se actualizo el perfil '.$_POST["nombre"].'</div>';
+    }
+}
+
+
 $cadena=$mensaje.'<div class="c100 card">
             <h2><i class="fa-solid fa-users-gear"></i> Perfiles</h2>
             <table id="table_perfiles" class="stripe row-border order-column nowrap">
@@ -18,16 +56,18 @@ $cadena=$mensaje.'<div class="c100 card">
                     </tr>
                 </thead>
                 <tbody>';
-//$ResPerfiles=mysqli_query($conn, "SELECT * FROM usuarios_perfiles WHERE Compani = '".$_SESSION["compani"]."' ORDER BY Nombre ASC");
-//$J=1;
-//while($RResPer=mysqli_fetch_array($ResPerfiles))
-//{
-//    $cadena.='      <tr>
-//                        <td align="center">'.$J.'</td>
-//                        <td><a href="javascript:void(0)" onclick="limpiar();abrirmodal();edit_perfil(\''.$RResPer["Id"].'\')">'.$RResPer["Nombre"].'</a></td>
-//                    </tr>';
-//    $J++;
-//}
+$ResPerfiles=mysqli_query($conn, "SELECT * FROM perfiles WHERE Id != 1 ORDER BY Nombre ASC");
+$J=1;
+while($RResPer=mysqli_fetch_array($ResPerfiles))
+{
+    $cadena.='      <tr>
+                        <td align="center">'.$J.'</td>
+                        <td>'.(permisos($_SESSION["perfil"], 'edit.perfil') ? '<a href="javascript:void(0)" onclick="edit_perfil(\''.$RResPer["Id"].'\')">'.$RResPer["Nombre"].'</a>' : $RResPer["Nombre"]).'</td>
+                        <td>'.($RResPer["Id"]==1 ? 'Todos' : 'Restringidos').'</td>
+                        <td>'.(permisos($_SESSION["perfil"], 'edit.perfil') ? '<i class="fa-solid fa-pen-to-square"></i>' : '').(permisos($_SESSION["perfil"], 'delete.perfil') ? ' <i class="fa-solid fa-trash"></i>' : '').'</td>
+                    </tr>';
+    $J++;
+}
 $cadena.='      </tbody>
             </table>';
 
@@ -66,6 +106,8 @@ function agregar_perfil(){
 }
 
 function edit_perfil(idperfil){
+    limpiar();
+    abrirmodal();
     $.ajax({
                 type: 'POST',
                 url : 'configuracion/editar_perfil.php',
@@ -73,7 +115,7 @@ function edit_perfil(idperfil){
     }).done (function ( info ){
         $('#modal-body').html(info);
     });
-}   
+}    
 
 //mostrar mensaje despues de los cambios
 setTimeout(function() { 
