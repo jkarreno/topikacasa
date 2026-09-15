@@ -16,13 +16,32 @@ $cadena=$mensaje.'<div class="c100 card agc ber bff bfz">
                         <th>Nombre</th>
                         <th>Usuario</th>
                         <th>Perfil</th>
-                        <th>Supervisor</th>
-                        <th>Suc. atendidas</th>
-                        <th>Suc. por atender</th>
-                        <th>Total sucursales</th>
+                        <th>Acciones</th>
                     </tr>
                 </thead>
                 <tbody>';
+$ResUsuarios = mysqli_query($conn, "SELECT 
+                                        u.Id,
+                                        u.Nombre,
+                                        u.Usuario,
+                                        p.Nombre AS NombrePerfil
+                                    FROM usuarios AS u
+                                    INNER JOIN perfiles AS p ON u.Perfil = p.Id
+                                    WHERE u.Id != 1
+                                    ORDER BY u.Nombre ASC");
+
+while($RResUsuarios = mysqli_fetch_array($ResUsuarios)){
+    $cadena.='<tr>
+                    <td>'.$RResUsuarios["Id"].'</td>
+                    <td>'.$RResUsuarios["Nombre"].'</td>
+                    <td>'.$RResUsuarios["Usuario"].'</td>
+                    <td>'.$RResUsuarios["NombrePerfil"].'</td>
+                    <td>
+                        <button class="btn btn-primary" onclick="edit_usuario('.$RResUsuarios["Id"].')"><i class="ri-edit-2-fill"></i></button>
+                        <button class="btn btn-secondary" onclick="doc_usuario('.$RResUsuarios["Id"].')"><i class="ri-file-text-fill"></i></button>
+                    </td>
+                </tr>';
+}
 $cadena.='      </tbody>
             </table>
         </div>';
@@ -39,12 +58,13 @@ $(document).ready( function () {
         },
         dom: 'Bfrtip',
         buttons: [
-            {
+            <?php if(permisos($_SESSION["perfil"], 'ver.perfiles')): ?>{
                 text: 'Perfiles',
                 action: function ( e, dt, node, config ) {
                     perfiles();
                 }
             },
+            <?php endif; ?>
             {
                 text: 'Agregar Usuario',
                 action: function ( e, dt, node, config ) {

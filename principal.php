@@ -13,7 +13,7 @@ if ($_SESSION["autentificado"] != "SI") {
 } 
 
 include ("conexion.php");
-//include ("funciones.php");
+include ("funciones.php");
 
 ?>
 <html lang="es-mx">
@@ -86,7 +86,10 @@ include ("conexion.php");
 		<div><a href="#" onclick="pedidos();"><i class="fa-solid fa-boxes-stacked"></i></a></div>
 		<div class="tooltip top" onclick="creditos()"><a href="#"><i class="ri-money-dollar-box-line"></i></a><span class="tiptext">Créditos</span></div>
 		<div class="tooltip top" onclick="creditos_broxel()"><a href="#"><i class="ri-money-dollar-box-line"></i></a><span class="tiptext">Créditos</span></div>
-		--><div class="tooltip top" onclick="configuracion()"><a href="#"><i class="ri-settings-3-line"></i></a><span class="tiptext">Configuración</span></div>
+		-->
+		<?php if(permisos($_SESSION["perfil"], "ver.configuracion")): ?>
+		<div class="tooltip top" onclick="configuracion()"><a href="#"><i class="ri-settings-3-line"></i></a><span class="tiptext">Configuración</span></div>
+		<?php endif; ?>
 		<!--<div class="tooltip top" onclick="estadisticos()"><a href="#"><i class="ri-line-chart-line"></i></a><span class="tiptext">Indicadores</span></div>
 		<div class="tooltip top" onclick="facturacion()"><a href="#"><i class="ri-article-line"></i></a><span class="tiptext">Facturación</span></div>
 		<div class="tooltip top" onclick="bitacora()"><a href="#"><i class="ri-git-repository-line"></i></a><span class="tiptext">Bitácora</span></div>
