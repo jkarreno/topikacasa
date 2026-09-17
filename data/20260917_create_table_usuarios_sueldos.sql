@@ -1,0 +1,10 @@
+CREATE TABLE `usuarios_sueldos` (
+	`Id` INT NOT NULL AUTO_INCREMENT,
+	`IdUsuario` INT NULL DEFAULT NULL,
+	`SueldoFijo` DECIMAL(10,2) NULL DEFAULT NULL,
+	`SueldoVariable` DECIMAL(10,2) NULL DEFAULT NULL,
+	`TipoSueldo` VARCHAR(50) NULL DEFAULT NULL,
+	`Fecha` INT NULL DEFAULT NULL,
+	PRIMARY KEY (`Id`)
+)
+COLLATE='utf8mb4_unicode_ci';
