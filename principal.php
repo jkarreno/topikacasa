@@ -33,10 +33,8 @@ include ("funciones.php");
 	
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-	<!--<script src="https://kit.fontawesome.com/a5e678cc82.js" crossorigin="anonymous"></script>-->
-	<link href="fontawesome64/css/fontawesome.css" rel="stylesheet">
-  	<link href="fontawesome64/css/brands.css" rel="stylesheet">
-  	<link href="fontawesome64/css/solid.css" rel="stylesheet">
+	<script src="https://kit.fontawesome.com/a5e678cc82.js" crossorigin="anonymous"></script>
+
 	
 
 	<script language="JavaScript" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
@@ -77,9 +75,11 @@ include ("funciones.php");
 	</header>
 
 	<div class="menu_principal">
-		<!--<div class="tooltip top"><a href="principal.php"><a href="#" onclick="dashboard(\''.date("Y-01-01").'\', \''.date("Y-m-d").'\', \'1\')"><i class="ri-dashboard-3-line"></i></a><span class="tiptext">Dashboard</span></div>
-		<div class="tooltip top"><a href="principal.php"><a href="#" onclick="dashboard_broxel()"><i class="ri-dashboard-3-line"></i></a><span class="tiptext">Dashboard</span></div>
-		<div class="tooltip top" onclick="solvexpress()"><a href="#"><img src="images/express.png" border="0" /></a><span class="tiptext">Express</span></div>
+		<!--<div class="tooltip top"><a href="principal.php"><a href="#" onclick="dashboard(\''.date("Y-01-01").'\', \''.date("Y-m-d").'\', \'1\')"><i class="ri-dashboard-3-line"></i></a><span class="tiptext">Dashboard</span></div>-->
+		<?php if(permisos($_SESSION["perfil"], "ver.clientes")): ?>
+			<div class="tooltip top"><a href="javascript:void(0)" onclick="clientes()"><i class="fa-solid fa-users-between-lines"></i></a><span class="tiptext">Clientes</span></div>
+		<?php endif; ?>
+		<!--<div class="tooltip top" onclick="solvexpress()"><a href="#"><img src="images/express.png" border="0" /></a><span class="tiptext">Express</span></div>
 		<div class="tooltip top" onclick="leads()"><a href="#"><i class="ri-crosshair-line"></i></a><span class="tiptext">Leads</span></div>
 		<div class="tooltip top" onclick="leads_broxel()"><a href="#"><i class="ri-crosshair-line"></i></a><span class="tiptext">Leads</span></div>
 		<div class="tooltip top" onclick="clientes()"><a href="#"><i class="ri-group-3-line"></i></a><span class="tiptext">Clientes</span></div>
