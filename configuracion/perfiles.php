@@ -83,6 +83,7 @@ $(document).ready( function () {
         },
         dom: 'Bfrtip',
         buttons: [
+            <?php if(permisos($_SESSION["perfil"], 'add.perfil')): ?>
             {
                 text: 'Agregar Perfil',
                 action: function ( e, dt, node, config ) {
@@ -91,6 +92,7 @@ $(document).ready( function () {
                     agregar_perfil();
                 }
             }
+            <?php endif; ?>
         ],
         paging: false
     });

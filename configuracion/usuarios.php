@@ -119,7 +119,7 @@ $(document).ready( function () {
                 }
             },
             <?php endif; ?>
-            {
+            <?php if(permisos($_SESSION["perfil"], 'add.usuario')): ?>{
                 text: 'Agregar Usuario',
                 action: function ( e, dt, node, config ) {
                     limpiar();
@@ -127,6 +127,7 @@ $(document).ready( function () {
                     agregar_usuario();
                 }
             }
+            <?php endif; ?>
         ],
         paging: false
     });
