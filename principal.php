@@ -67,7 +67,7 @@ include ("funciones.php");
 	<header class="" style="background-color: #000; border-bottom: 1px solid #000;">
 		<div class="relative flex h-16 items-center justify-between">
 			<div id="logotop" class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
-				<div class="menu_bar"><label for="check" id="chk_btn"><img src="images/logotrans.png" border="0"></label></div>
+				<div class="menu_bar"><label for="check" id="chk_btn"><img src="images/TopikaT.png" border="0"></label></div>
 			</div>
 		</div>
 		<div class="titulo_head"><h2>Panel de Control</h2></div>
@@ -79,16 +79,17 @@ include ("funciones.php");
 		<?php if(permisos($_SESSION["perfil"], "ver.clientes")): ?>
 			<div class="tooltip top"><a href="javascript:void(0)" onclick="clientes()"><i class="fa-solid fa-users-between-lines"></i></a><span class="tiptext">Clientes</span></div>
 		<?php endif; ?>
-		<!--<div class="tooltip top" onclick="solvexpress()"><a href="#"><img src="images/express.png" border="0" /></a><span class="tiptext">Express</span></div>
-		<div class="tooltip top" onclick="leads()"><a href="#"><i class="ri-crosshair-line"></i></a><span class="tiptext">Leads</span></div>
-		<div class="tooltip top" onclick="leads_broxel()"><a href="#"><i class="ri-crosshair-line"></i></a><span class="tiptext">Leads</span></div>
+		<?php if(permisos($_SESSION["perfil"], "ver.proveedores")): ?>
+			<div class="tooltip top" onclick="proveedores()"><a href="#"><i class="fa-solid fa-users-rectangle"></i></a><span class="tiptext">Proveedores</span></div>
+		<?php endif; ?>
+		<!--<div class="tooltip top" onclick="leads_broxel()"><a href="#"><i class="ri-crosshair-line"></i></a><span class="tiptext">Leads</span></div>
 		<div class="tooltip top" onclick="clientes()"><a href="#"><i class="ri-group-3-line"></i></a><span class="tiptext">Clientes</span></div>
 		<div><a href="#" onclick="pedidos();"><i class="fa-solid fa-boxes-stacked"></i></a></div>
 		<div class="tooltip top" onclick="creditos()"><a href="#"><i class="ri-money-dollar-box-line"></i></a><span class="tiptext">Créditos</span></div>
 		<div class="tooltip top" onclick="creditos_broxel()"><a href="#"><i class="ri-money-dollar-box-line"></i></a><span class="tiptext">Créditos</span></div>
 		-->
 		<?php if(permisos($_SESSION["perfil"], "ver.configuracion")): ?>
-		<div class="tooltip top" onclick="configuracion()"><a href="#"><i class="ri-settings-3-line"></i></a><span class="tiptext">Configuración</span></div>
+			<div class="tooltip top" onclick="configuracion()"><a href="#"><i class="ri-settings-3-line"></i></a><span class="tiptext">Configuración</span></div>
 		<?php endif; ?>
 		<!--<div class="tooltip top" onclick="estadisticos()"><a href="#"><i class="ri-line-chart-line"></i></a><span class="tiptext">Indicadores</span></div>
 		<div class="tooltip top" onclick="facturacion()"><a href="#"><i class="ri-article-line"></i></a><span class="tiptext">Facturación</span></div>

@@ -8,7 +8,7 @@ $mensaje='';
 
 if(isset($_POST["hacer"]))
 {
-    if($_POST["hacer"] == "addcliente")
+    if($_POST["hacer"] == "addproveedor")
     {
         $nombre = mysqli_real_escape_string($conn, $_POST["nombre"]);
         $razon_social = mysqli_real_escape_string($conn, $_POST["razon_social"]);
@@ -17,16 +17,17 @@ if(isset($_POST["hacer"]))
         $telefono = mysqli_real_escape_string($conn, $_POST["telefono"]);
         $correoe = mysqli_real_escape_string($conn, $_POST["correoe"]);
 
-        $sql = "INSERT INTO clientes (Nombre, RazonSocial, RFC, Direccion, Telefono, CorreoE) VALUES ('$nombre', '$razon_social', '$rfc', '$direccion', '$telefono', '$correoe')";
+        $sql = "INSERT INTO proveedores (Nombre, RazonSocial, RFC, Direccion, Telefono, CorreoE) 
+                                    VALUES ('$nombre', '$razon_social', '$rfc', '$direccion', '$telefono', '$correoe')";
 
         if (mysqli_query($conn, $sql)) {
-            $mensaje='<div class="mesaje" id="mesaje"><i class="fas fa-thumbs-up"></i> Cliente agregado correctamente</div>';
+            $mensaje='<div class="mesaje" id="mesaje"><i class="fas fa-thumbs-up"></i> Proveedor agregado correctamente</div>';
         } else {
-            $mensaje='<div class="mesaje" id="mesaje"><i class="fas fa-exclamation-triangle"></i> Error al agregar cliente: ' . mysqli_error($conn) . '</div>';
+            $mensaje='<div class="mesaje" id="mesaje"><i class="fas fa-exclamation-triangle"></i> Error al agregar proveedor: ' . mysqli_error($conn) . '</div>';
         }
     }
 
-    if($_POST["hacer"] == "editcliente")
+    if($_POST["hacer"] == "editproveedor")
     {
         $nombre = mysqli_real_escape_string($conn, $_POST["nombre"]);
         $razon_social = mysqli_real_escape_string($conn, $_POST["razon_social"]);
@@ -34,27 +35,27 @@ if(isset($_POST["hacer"]))
         $direccion = mysqli_real_escape_string($conn, $_POST["direccion"]);
         $telefono = mysqli_real_escape_string($conn, $_POST["telefono"]);
         $correoe = mysqli_real_escape_string($conn, $_POST["correoe"]);
-        $idcliente = mysqli_real_escape_string($conn, $_POST["idcliente"]);
+        $idproveedor = mysqli_real_escape_string($conn, $_POST["idproveedor"]);
 
-        $sql = "UPDATE clientes SET Nombre='$nombre', 
+        $sql = "UPDATE proveedores SET Nombre='$nombre', 
                                     RazonSocial='$razon_social', 
                                     RFC='$rfc', 
                                     Direccion='$direccion', 
                                     Telefono='$telefono', 
                                     CorreoE='$correoe' 
-                            WHERE Id='$idcliente'";
+                            WHERE Id='$idproveedor'";
 
         if (mysqli_query($conn, $sql)) {
-            $mensaje='<div class="mesaje" id="mesaje"><i class="fas fa-thumbs-up"></i> Cliente editado correctamente</div>';
+            $mensaje='<div class="mesaje" id="mesaje"><i class="fas fa-thumbs-up"></i> Proveedor editado correctamente</div>';
         } else {
-            $mensaje='<div class="mesaje" id="mesaje"><i class="fas fa-exclamation-triangle"></i> Error al editar cliente: ' . mysqli_error($conn) . '</div>';
+            $mensaje='<div class="mesaje" id="mesaje"><i class="fas fa-exclamation-triangle"></i> Error al editar proveedor: ' . mysqli_error($conn) . '</div>';
         }
     }
 }
 
 $cadena=$mensaje.'<div class="c100 card agc ber bff bfz">
-            <h2><i class="fa-solid fa-users-between-lines"></i> Clientes</h2>
-            <table id="table_clientes" class="stripe row-border order-column nowrap">
+            <h2><i class="fa-solid fa-users-between-lines"></i> Proveedores</h2>
+            <table id="table_proveedores" class="stripe row-border order-column nowrap">
                 <thead>
                     <tr>
                         <th>Id</th>
@@ -66,18 +67,18 @@ $cadena=$mensaje.'<div class="c100 card agc ber bff bfz">
                     </tr>
                 </thead>
                 <tbody>';
-$ResClientes = mysqli_query($conn, "SELECT * FROM clientes ORDER BY Nombre ASC");
-while($RResClientes = mysqli_fetch_array($ResClientes))
+$ResProveedores = mysqli_query($conn, "SELECT * FROM proveedores ORDER BY Nombre ASC");
+while($RResProveedores = mysqli_fetch_array($ResProveedores))
 {
     $cadena.='<tr>
-                    <td>'.$RResClientes["Id"].'</td>
-                    <td>'.$RResClientes["Nombre"].'</td>
-                    <td>'.$RResClientes["Telefono"].'</td>
-                    <td>'.$RResClientes["CorreoE"].'</td>
-                    <td>'.$RResClientes["Direccion"].'</td>
+                    <td>'.$RResProveedores["Id"].'</td>
+                    <td>'.$RResProveedores["Nombre"].'</td>
+                    <td>'.$RResProveedores["Telefono"].'</td>
+                    <td>'.$RResProveedores["CorreoE"].'</td>
+                    <td>'.$RResProveedores["Direccion"].'</td>
                     <td>
-                        '.(permisos($_SESSION["perfil"], "edit.cliente") ? '<a href="javascript:void(0)" onclick="editar_cliente('.$RResClientes["Id"].')"><i class="ri-edit-2-fill"></i></a>' : '').'
-                        '.(permisos($_SESSION["perfil"], "del.cliente") ? '<a href="javascript:void(0)" onclick="eliminar_cliente('.$RResClientes["Id"].')"><i class="ri-delete-bin-6-fill"></i></a>' : '').'
+                        '.(permisos($_SESSION["perfil"], "edit.proveedor") ? '<a href="javascript:void(0)" onclick="editar_proveedor('.$RResProveedores["Id"].')"><i class="ri-edit-2-fill"></i></a>' : '').'
+                        '.(permisos($_SESSION["perfil"], "del.proveedor") ? '<a href="javascript:void(0)" onclick="eliminar_proveedor('.$RResProveedores["Id"].')"><i class="ri-delete-bin-6-fill"></i></a>' : '').'
                     </td>
                 </tr>';
 }
@@ -89,7 +90,7 @@ echo $cadena;
 ?>
 <script>
 $(document).ready( function () {
-    var table = $('#table_clientes').DataTable({
+    var table = $('#table_proveedores').DataTable({
         language: {
             decimal: '.',
             thousands: ',',
@@ -97,13 +98,13 @@ $(document).ready( function () {
         },
         dom: 'Bfrtip',
         buttons: [
-            <?php if(permisos($_SESSION["perfil"], "add.cliente")): ?>
+            <?php if(permisos($_SESSION["perfil"], "add.proveedor")): ?>
             {
-                text: 'Agregar Cliente',
+                text: 'Agregar Proveedor',
                 action: function ( e, dt, node, config ) {
                     limpiar();
                     abrirmodal();
-                    agregar_cliente();
+                    agregar_proveedor();
                 }
             }
             <?php endif; ?>
@@ -112,22 +113,22 @@ $(document).ready( function () {
     });
 } );
 
-function agregar_cliente(){
+function agregar_proveedor(){
     $.ajax({
 				type: 'POST',
-				url : 'clientes/agregar_cliente.php'
+				url : 'proveedores/agregar_proveedor.php'
 	}).done (function ( info ){
 		$('#modal-body').html(info);
 	});
 }
 
-function editar_cliente(idcliente){
+function editar_proveedor(idproveedor){
     limpiar();
     abrirmodal();
     $.ajax({
 				type: 'POST',
-				url : 'clientes/editar_cliente.php',
-				data: { idcliente: idcliente }
+				url : 'proveedores/editar_proveedor.php',
+				data: { idproveedor: idproveedor }
 	}).done (function ( info ){
 		$('#modal-body').html(info);
 	});
