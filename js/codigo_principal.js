@@ -43,6 +43,18 @@ function clientes(){
 	});
 }
 
+function proveedores(){
+	//Añadimos la imagen de carga en el contenedor
+	$('#contenido').html('<div class="loading"><img src="/images/loading-forever.gif" alt="loading" width="60px" /></div>');
+
+	$.ajax({
+				type: 'POST',
+				url : 'proveedores/proveedores.php'
+	}).done (function ( info ){
+		$('#contenido').html(info);
+	});
+}
+
 
 function logout(){
 	window.location.href = 'logout.php';

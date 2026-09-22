@@ -15,7 +15,7 @@
 	<body style="background: url('images/fondo.jpg') no-repeat; background-size: cover; background-position: top center;">
 		<div class="centrado_logo">
 			<h2>&nbsp;</h2>
-			<img src="images/logotrans.png" border="0"  style="margin-top:35px">
+			<img src="images/Topikalogo.png" border="0"  style="margin-top:35px">
 		</div>
 		<div class="centrado_index">
 			<form name="flogin" id="flogin" method="POST" action="validausuario.php">
