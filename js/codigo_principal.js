@@ -55,6 +55,18 @@ function proveedores(){
 	});
 }
 
+function almacen(){
+	//Añadimos la imagen de carga en el contenedor
+	$('#contenido').html('<div class="loading"><img src="/images/loading-forever.gif" alt="loading" width="60px" /></div>');
+
+	$.ajax({
+				type: 'POST',
+				url : 'almacen/almacen.php'
+	}).done (function ( info ){
+		$('#contenido').html(info);
+	});
+}
+
 
 function logout(){
 	window.location.href = 'logout.php';
@@ -74,8 +86,8 @@ function parar() {
     bloqueo = setTimeout('location="logout.php?session=exp"', 3120000);
 }
 
-function logout(compani){
-	location="logout.php?session=exp&f=" ;
+function logout(){
+	location="logout.php";
 }
 
 

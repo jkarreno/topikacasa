@@ -82,8 +82,10 @@ include ("funciones.php");
 		<?php if(permisos($_SESSION["perfil"], "ver.proveedores")): ?>
 			<div class="tooltip top" onclick="proveedores()"><a href="#"><i class="fa-solid fa-users-rectangle"></i></a><span class="tiptext">Proveedores</span></div>
 		<?php endif; ?>
-		<!--<div class="tooltip top" onclick="leads_broxel()"><a href="#"><i class="ri-crosshair-line"></i></a><span class="tiptext">Leads</span></div>
-		<div class="tooltip top" onclick="clientes()"><a href="#"><i class="ri-group-3-line"></i></a><span class="tiptext">Clientes</span></div>
+		<?php if(permisos($_SESSION["perfil"], "ver.almacen")): ?>
+			<div class="tooltip top" onclick="almacen()"><a href="#"><i class="fa-solid fa-warehouse"></i><span class="tiptext">Almacen</span></div>
+		<?php endif; ?>
+		<!--<div class="tooltip top" onclick="clientes()"><a href="#"><i class="ri-group-3-line"></i></a><span class="tiptext">Clientes</span></div>
 		<div><a href="#" onclick="pedidos();"><i class="fa-solid fa-boxes-stacked"></i></a></div>
 		<div class="tooltip top" onclick="creditos()"><a href="#"><i class="ri-money-dollar-box-line"></i></a><span class="tiptext">Créditos</span></div>
 		<div class="tooltip top" onclick="creditos_broxel()"><a href="#"><i class="ri-money-dollar-box-line"></i></a><span class="tiptext">Créditos</span></div>
