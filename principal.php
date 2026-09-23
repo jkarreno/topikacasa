@@ -91,14 +91,14 @@ include ("funciones.php");
 		<div class="tooltip top" onclick="creditos_broxel()"><a href="#"><i class="ri-money-dollar-box-line"></i></a><span class="tiptext">Créditos</span></div>
 		-->
 		<?php if(permisos($_SESSION["perfil"], "ver.configuracion")): ?>
-			<div class="tooltip top" onclick="configuracion()"><a href="#"><i class="ri-settings-3-line"></i></a><span class="tiptext">Configuración</span></div>
+			<div class="tooltip top" onclick="configuracion()"><a href="#"><i class="fa-solid fa-gears"></i></a><span class="tiptext">Configuración</span></div>
 		<?php endif; ?>
-		<!--<div class="tooltip top" onclick="estadisticos()"><a href="#"><i class="ri-line-chart-line"></i></a><span class="tiptext">Indicadores</span></div>
-		<div class="tooltip top" onclick="facturacion()"><a href="#"><i class="ri-article-line"></i></a><span class="tiptext">Facturación</span></div>
+		<div class="tooltip top" onclick="estadisticos()"><a href="#"><i class="fa-solid fa-diagram-project"></i></a><span class="tiptext">Proyectos</span></div>
+		<!--<div class="tooltip top" onclick="facturacion()"><a href="#"><i class="ri-article-line"></i></a><span class="tiptext">Facturación</span></div>
 		<div class="tooltip top" onclick="bitacora()"><a href="#"><i class="ri-git-repository-line"></i></a><span class="tiptext">Bitácora</span></div>
 		<div class="tooltip top" onclick="helpdesk()"><i class="ri-ticket-line"></i><span class="tiptext">Help Desk</span></div>
 		<div class="tooltip top" onclick="perfil()"><i class="ri-user-line"></i><span class="tiptext">perfil</span></div>-->
-		<div class="tooltip top" onclick="logout()"><i class="ri-logout-box-r-line"></i><span class="tiptext">Adios</span></div>
+		<div class="tooltip top" onclick="logout()"><i class="fa-solid fa-right-from-bracket"></i><span class="tiptext">Adios</span></div>
 	</div>
 
 	<div class="contenido" id="contenido">
