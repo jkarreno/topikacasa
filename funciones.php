@@ -41,7 +41,7 @@ function fecha($fecha)
     }
 }
 
-function fechados($fecha)
+function fechados($fecha) //Formato de fecha dd-mm-yyyy
 {
 	switch($fecha[5].$fecha[6])
 	{
