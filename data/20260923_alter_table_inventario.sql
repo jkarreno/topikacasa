@@ -1,0 +1,3 @@
+ALTER TABLE `Inventario`
+	ADD COLUMN `IdProveedor` INT NULL DEFAULT NULL AFTER `Fecha`,
+	ADD COLUMN `IdCliente` INT NULL DEFAULT NULL AFTER `IdProveedor`;
