@@ -93,7 +93,9 @@ include ("funciones.php");
 		<?php if(permisos($_SESSION["perfil"], "ver.configuracion")): ?>
 			<div class="tooltip top" onclick="configuracion()"><a href="#"><i class="fa-solid fa-gears"></i></a><span class="tiptext">Configuración</span></div>
 		<?php endif; ?>
-		<div class="tooltip top" onclick="estadisticos()"><a href="#"><i class="fa-solid fa-diagram-project"></i></a><span class="tiptext">Proyectos</span></div>
+		<?php if(permisos($_SESSION["perfil"], "ver.proyectos")): ?>
+			<div class="tooltip top" onclick="proyectos()"><a href="#"><i class="fa-solid fa-diagram-project"></i></a><span class="tiptext">Proyectos</span></div>
+		<?php endif; ?>
 		<!--<div class="tooltip top" onclick="facturacion()"><a href="#"><i class="ri-article-line"></i></a><span class="tiptext">Facturación</span></div>
 		<div class="tooltip top" onclick="bitacora()"><a href="#"><i class="ri-git-repository-line"></i></a><span class="tiptext">Bitácora</span></div>
 		<div class="tooltip top" onclick="helpdesk()"><i class="ri-ticket-line"></i><span class="tiptext">Help Desk</span></div>

@@ -114,6 +114,8 @@ $(document).ready( function () {
 } );
 
 function agregar_proveedor(){
+    limpiar();
+    abrirmodal();
     $.ajax({
 				type: 'POST',
 				url : 'proveedores/agregar_proveedor.php'

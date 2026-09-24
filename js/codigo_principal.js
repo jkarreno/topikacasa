@@ -67,6 +67,18 @@ function almacen(){
 	});
 }
 
+function proyectos(){
+	//Añadimos la imagen de carga en el contenedor
+	$('#contenido').html('<div class="loading"><img src="/images/loading-forever.gif" alt="loading" width="60px" /></div>');
+
+	$.ajax({
+				type: 'POST',
+				url : 'proyectos/proyectos.php'
+	}).done (function ( info ){
+		$('#contenido').html(info);
+	});
+}
+
 
 function logout(){
 	window.location.href = 'logout.php';
