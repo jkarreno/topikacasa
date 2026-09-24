@@ -13,6 +13,7 @@ $cadena='<div class="c100">
 					'.(permisos($_SESSION["perfil"], 'ver.usuarios')==TRUE ? '<li><a href="#" onclick="usuarios()" class = "mytooltip"><i class="ri-group-2-fill"></i><span class = "mytext">Usuarios</span></a></li>' : '').'
                     '.(permisos($_SESSION["perfil"], 'ver.medidas')==TRUE ? '<li><a href="#" onclick="medidas()" class = "mytooltip"><i class="ri-pencil-ruler-2-fill"></i><span class = "mytext">Medidas</span></a></li>' : '').'
 					'.(permisos($_SESSION["perfil"], 'ver.almacenes')==TRUE ? '<li><a href="#" onclick="almacenes()" class = "mytooltip"><i class="ri-store-2-fill"></i><span class = "mytext">Almacenes</span></a></li>' : '').'
+					'.(permisos($_SESSION["perfil"], 'ver.statusproyectos')==TRUE ? '<li><a href="#" onclick="status_proyectos()" class = "mytooltip"><i class="ri-progress-5-line"></i><span class = "mytext">Estatus Proyectos</span></a></li>' : '').'
                 </ul>
             </div>
             <div id="contenido2" class="contenido2">
@@ -47,6 +48,15 @@ function almacenes(){
 	$.ajax({
 				type: 'POST',
 				url : 'configuracion/almacenes.php'
+	}).done (function ( info ){
+		$('#contenido2').html(info);
+	});
+}
+
+function status_proyectos(){
+	$.ajax({
+				type: 'POST',
+				url : 'configuracion/status_proyectos.php'
 	}).done (function ( info ){
 		$('#contenido2').html(info);
 	});

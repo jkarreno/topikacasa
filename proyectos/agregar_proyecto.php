@@ -17,9 +17,13 @@ while ($RResClientes = mysqli_fetch_assoc($ResClientes)) {
 }
 $cadena.='          </select>
                 </div>
-                <div class="c60">
+                <div class="c30">
                     <label class="l_form">Nombre Proyecto:</label>
                     <input type="text" name="nombre_proyecto" id="nombre_proyecto">
+                </div>
+                <div class="c30">
+                    <label class="l_form">Fecha de entrega:</label>
+                    <input type="date" name="fecha_entrega" id="fecha_entrega" value="'.date("Y-m-d").'">
                 </div>
                 
                 <div class="c100">
