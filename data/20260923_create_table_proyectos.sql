@@ -1,0 +1,13 @@
+CREATE TABLE `proyectos` (
+	`Id` INT NOT NULL AUTO_INCREMENT,
+	`NumProyecto` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_unicode_ci',
+	`IdCliente` INT NULL DEFAULT NULL,
+	`NombreProyecto` VARCHAR(250) NULL DEFAULT NULL COLLATE 'utf8mb4_unicode_ci',
+	`FechaCreacion` INT NULL DEFAULT NULL,
+	`FechaInicio` INT NULL DEFAULT NULL,
+	`FechaFIn` INT NULL DEFAULT NULL,
+	`Estatus` INT NULL DEFAULT NULL,
+	PRIMARY KEY (`Id`)
+)
+COLLATE='utf8mb4_0900_ai_ci'
+;
